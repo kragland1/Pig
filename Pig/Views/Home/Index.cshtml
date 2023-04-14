@@ -1,0 +1,86 @@
+﻿@model Game
+
+@{
+    ViewData["Title"] = "Pig";
+}
+
+<div class="row">
+    
+    @* Game column *@
+    <div class="col-7">
+
+        <ul class="list-group">
+            <li class="list-group-item">
+                <div class="row">
+                    <div class="col">
+                        <label class="me-1">@Model.Player1.Name:</label>
+                        <label>@Model.Player1.Score</label>
+                    </div>
+                    <div class="col">
+                        <form asp-action="NewGame" method="post">
+                            <input type="submit" value="New Game" class="btn btn-outline-dark float-end" />
+                        </form>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col">
+                        <label class="me-1">@Model.Player2.Name:</label>
+                        <label>@Model.Player2.Score</label>
+                    </div>
+                    <div class="col">
+                    </div>
+                </div>
+            </li>
+
+            <li class="list-group-item">
+                <div class="row">
+                    <div class="col mb-3">
+                        <label><b>@Model.CurrentPlayerName's turn</b></label>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-2 col-3">
+                        <form asp-action="Roll" method="post">
+                            <button type="submit" class="btn btn-dark"
+                            @(Model.IsGameOver ? "disabled": "")>Roll</button>
+                        </form>
+                    </div>
+                    <div class="col-md-2 col-3">
+                        <form asp-action="Hold" method="post">
+                            <button type="submit" class="btn btn-outline-danger"
+                            @(Model.IsGameOver ? "disabled": "")>Hold</button>
+                        </form>
+                    </div>
+                    <div class="col offset-sm-1">
+                        <label>Die:</label>
+                        <label>@Model.LastRoll</label>
+                    </div>
+                    <div class="col">
+                        <label>Total:</label>
+                        <label>@Model.CurrentTurnScore</label>
+                    </div>
+                    @*<div class="col form-inline">
+
+                        <form asp-action="Roll" method="post">
+                            <button type="submit" class="btn btn-dark me-2"></button>
+                        </form>
+                        <form asp-action="Hold" method="post">
+                            <button type="submit" class="btn btn-outline-danger"></button>
+                        </form>
+
+                        <label class="me-1">Die:</label>
+                        <label class="me-2">@Model.LastRoll</label>
+
+                        <label class="me-1">Total:</label>
+                        <label>@Model.CurrentTurnScore</label>
+                    </div>
+                    *@
+                </div>
+            </li>
+
+        </ul>
+    </div>
+
+</div>
